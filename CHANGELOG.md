@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - Initial release
 
-* TODO: Describe initial release.
+- Add the Suspense widget that takes in a future, a fallback widget, a builder,
+  and an optional error builder.
