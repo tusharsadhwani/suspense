@@ -3,6 +3,7 @@
 - Add the Suspense widget that takes in a future, a fallback widget, a builder,
   and an optional error builder.
 
-## [1.1.0] - Stream support
+## [1.1.0+1] - Stream support
 
 - Add a `.stream` constructor for streams
+- Add documentation

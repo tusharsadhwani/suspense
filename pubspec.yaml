@@ -1,6 +1,6 @@
 name: suspense
-description: A new Flutter package project.
-version: 1.1.0
+description: A React-inspired Suspense implementation for your Flutter apps.
+version: 1.1.0+1
 homepage: https://github.com/tusharsadhwani/suspense
 
 environment:
