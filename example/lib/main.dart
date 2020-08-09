@@ -11,12 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Suspense Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Suspense Flutter Demo'),
     );
   }
 }
@@ -31,10 +31,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _calculation = Future.delayed(
-    Duration(seconds: 2),
-    () => Random().nextBool() ? 42 : throw 'unknown error',
-  );
+  final rng = Random();
+  Stream<int> _stream;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _stream = Stream<int>.periodic(
+      Duration(seconds: 1),
+      (_) => rng.nextInt(10000),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Suspense<int>(
-          future: _calculation,
+        child: Suspense<int>.stream(
+          stream: _stream,
           fallback: CircularProgressIndicator(),
           builder: (data) => Text('Result: $data'),
           errorBuilder: (error) => Text('Uh oh! it didn\'t work: $error'),
